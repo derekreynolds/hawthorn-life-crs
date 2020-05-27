@@ -113,7 +113,7 @@ public class AccountHolderTransformer implements Transformer {
 
         docSpec.setDocTypeIndic(OECDDocTypeIndicEnumType.OECD_1);
 
-        docSpec.setDocRefId(row.getCell(AccountHolderConstants.ACCOUNT_NAME).getStringCellValue());
+        docSpec.setDocRefId(row.getCell(AccountHolderConstants.ACCOUNT_NAME).getStringCellValue() + "-" + row.getRowNum());
 
         return docSpec;
     }

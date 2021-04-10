@@ -1,6 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- edited with XMLSpy v2005 sp1 U (http://www.xmlspy.com) by Steria Benelux sa/nv (Steria Benelux sa/nv) -->
-<xsd:schema xmlns:stf="urn:oecd:ties:stf:v4" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:oecd:ties:stf:v4" elementFormDefault="qualified" attributeFormDefault="unqualified" version="4.0">
+<!-- edited with XMLSpy v2012 rel. 2 sp1 (x64) (http://www.altova.com) by Sebastien Michon (OECD) -->
+<xsd:schema xmlns:stf="urn:oecd:ties:crsstf:v5" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:oecd:ties:crsstf:v5" elementFormDefault="qualified" attributeFormDefault="unqualified" version="5.0">
+	<!-- -->
+	<!--+++++++++++++++++++++++  String lenght types ++++++++++++++++++++++++++++++++++++++ -->
+	<!-- -->
+	<!-- Defines a string with minimum length 1 and maximum length of 10 -->
+	<xsd:simpleType name="StringMin1Max10_Type">
+		<xsd:annotation>
+			<xsd:documentation>Defines a string with minimum length 1 and maximum length of 10</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="10"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<!-- -->
+	<!-- Defines a string with minimum length 1 and maximum length of 170 -->
+	<xsd:simpleType name="StringMin1Max170_Type">
+		<xsd:annotation>
+			<xsd:documentation>Defines a string with minimum length 1 and maximum length of 170</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="170"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<!-- -->
+	<!-- Defines a string with minimum length 1 and maximum length of 200 -->
+	<xsd:simpleType name="StringMin1Max200_Type">
+		<xsd:annotation>
+			<xsd:documentation>Defines a string with minimum length 1 and maximum length of 200</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="200"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<!-- -->
+	<!-- Defines a string with minimum length 1 and maximum length of 400 -->
+	<xsd:simpleType name="StringMin1Max400_Type">
+		<xsd:annotation>
+			<xsd:documentation>Defines a string with minimum length 1 and maximum length of 400</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="400"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<!-- -->
+	<!-- Defines a string with minimum length 1 and maximum length of 4000 -->
+	<xsd:simpleType name="StringMin1Max4000_Type">
+		<xsd:annotation>
+			<xsd:documentation>Defines a string with minimum length 1 and maximum length of 4000</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="4000"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<!-- -->
 	<!--+++++++++++++++++++++++  Reusable Simple types ++++++++++++++++++++++++++++++++++++++ -->
 	<!-- Document type indicators types -->
 	<xsd:simpleType name="OECDDocTypeIndic_EnumType">
@@ -146,17 +204,17 @@
 		</xsd:annotation>
 		<xsd:sequence>
 			<xsd:element name="DocTypeIndic" type="stf:OECDDocTypeIndic_EnumType"/>
-			<xsd:element name="DocRefId" type="xsd:string">
+			<xsd:element name="DocRefId" type="stf:StringMin1Max200_Type">
 				<xsd:annotation>
 					<xsd:documentation xml:lang="en">Sender's unique identifier of this document </xsd:documentation>
 				</xsd:annotation>
 			</xsd:element>
-			<xsd:element name="CorrMessageRefId" type="xsd:string" minOccurs="0">
+			<xsd:element name="CorrMessageRefId" type="stf:StringMin1Max170_Type" minOccurs="0">
 				<xsd:annotation>
 					<xsd:documentation xml:lang="en">Reference id of the message of the document referred to if this is a correction</xsd:documentation>
 				</xsd:annotation>
 			</xsd:element>
-			<xsd:element name="CorrDocRefId" type="xsd:string" minOccurs="0">
+			<xsd:element name="CorrDocRefId" type="stf:StringMin1Max200_Type" minOccurs="0">
 				<xsd:annotation>
 					<xsd:documentation xml:lang="en">Reference id of the document referred to if this is correction</xsd:documentation>
 				</xsd:annotation>

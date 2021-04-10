@@ -66,7 +66,7 @@ public class ControllingPersonTransformer implements Transformer {
         List<Row> rows = this.spreadsheetReader.getControllingPersonRows(accountNumber);
 
         for (Row row : rows) {
-                controllingPersons.add(createControllingPerson(row));
+             controllingPersons.add(createControllingPerson(row));
         }		
 
         return controllingPersons;
@@ -167,17 +167,37 @@ public class ControllingPersonTransformer implements Transformer {
         AddressType address = objectFactory.createAddressType();
         AddressFixType addressFix = objectFactory.createAddressFixType();
 
-        addressFix.setStreet(row.getCell(ControllingPersonConstant.STREET).getStringCellValue());
-        addressFix.setBuildingIdentifier(row.getCell(ControllingPersonConstant.BUILDING_IDENTIFIER).getStringCellValue());
-        addressFix.setSuiteIdentifier(row.getCell(ControllingPersonConstant.SUITE_IDENTIFIER).getStringCellValue());
-        addressFix.setFloorIdentifier(row.getCell(ControllingPersonConstant.FLOOR_IDENTIFIER).getStringCellValue());
-        addressFix.setDistrictName(row.getCell(ControllingPersonConstant.DISTRICT_NAME).getStringCellValue());
-        addressFix.setPOB(row.getCell(ControllingPersonConstant.POB).getStringCellValue());
-        addressFix.setPostCode(row.getCell(ControllingPersonConstant.POST_CODE).getStringCellValue());
-        addressFix.setCity(row.getCell(ControllingPersonConstant.CITY).getStringCellValue());
+        CellUtil.getValue(row.getCell(ControllingPersonConstant.STREET)).ifPresent(value ->
+            addressFix.setStreet(value)
+        );
+        CellUtil.getValue(row.getCell(ControllingPersonConstant.BUILDING_IDENTIFIER)).ifPresent(value ->
+            addressFix.setBuildingIdentifier(value)
+        );
+        CellUtil.getValue(row.getCell(ControllingPersonConstant.SUITE_IDENTIFIER)).ifPresent(value ->
+            addressFix.setSuiteIdentifier(value)
+        );
+        CellUtil.getValue(row.getCell(ControllingPersonConstant.FLOOR_IDENTIFIER)).ifPresent(value ->
+            addressFix.setFloorIdentifier(value)
+        );
+        CellUtil.getValue(row.getCell(ControllingPersonConstant.DISTRICT_NAME)).ifPresent(value ->
+            addressFix.setDistrictName(value)
+        );
+        CellUtil.getValue(row.getCell(ControllingPersonConstant.POB)).ifPresent(value ->
+            addressFix.setPOB(value)
+        );
+        CellUtil.getValue(row.getCell(ControllingPersonConstant.POST_CODE)).ifPresent(value ->
+            addressFix.setPostCode(value)
+        );
+        CellUtil.getValue(row.getCell(ControllingPersonConstant.CITY)).ifPresent(value ->
+            addressFix.setCity(value)
+        );
 
-        address.setLegalAddressType(OECDLegalAddressTypeEnumType.valueOf(CellUtil.convertOecdType(row.getCell(ControllingPersonConstant.ADDRESS_TYPE).getStringCellValue())));
-        address.getContent().add(objectFactory.createAddressTypeCountryCode(CountryCodeType.valueOf(row.getCell(ControllingPersonConstant.COUNTRY_CODE).getStringCellValue())));
+        CellUtil.getValue(row.getCell(ControllingPersonConstant.ADDRESS_TYPE)).ifPresent(value ->
+            address.setLegalAddressType(OECDLegalAddressTypeEnumType.valueOf(CellUtil.convertOecdType(value)))
+        );
+        CellUtil.getValue(row.getCell(ControllingPersonConstant.COUNTRY_CODE)).ifPresent(value ->
+            address.getContent().add(objectFactory.createAddressTypeCountryCode(CountryCodeType.valueOf(value)))
+        );
         address.getContent().add(objectFactory.createAddressTypeAddressFix(addressFix));
 
         return address;
@@ -196,7 +216,9 @@ public class ControllingPersonTransformer implements Transformer {
                                                 Integer.valueOf(date.substring(5, 7)) - 1, 
                                                 Integer.valueOf(date.substring(8, 10))));
         birth.setBirthDate(birthDate);
-        birth.setCity(row.getCell(ControllingPersonConstant.BIRTH_CITY).getStringCellValue());
+        CellUtil.getValue(row.getCell(ControllingPersonConstant.BIRTH_CITY)).ifPresent(value ->
+            birth.setCity(value)
+        );
 
         CellUtil.getValue(row.getCell(ControllingPersonConstant.BIRTH_COUNTRY_CODE)).ifPresent(value -> {
                 CountryInfo countryInfo = objectFactory.createPersonPartyTypeBirthInfoCountryInfo();

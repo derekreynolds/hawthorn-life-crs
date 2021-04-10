@@ -293,17 +293,37 @@ public class AccountHolderTransformer implements Transformer {
         AddressType address = objectFactory.createAddressType();
         AddressFixType addressFix = objectFactory.createAddressFixType();
 
-        addressFix.setStreet(row.getCell(AccountHolderConstants.STREET).getStringCellValue());
-        addressFix.setBuildingIdentifier(row.getCell(AccountHolderConstants.BUILDING_IDENTIFIER).getStringCellValue());
-        addressFix.setSuiteIdentifier(row.getCell(AccountHolderConstants.SUITE_IDENTIFIER).getStringCellValue());
-        addressFix.setFloorIdentifier(row.getCell(AccountHolderConstants.FLOOR_IDENTIFIER).getStringCellValue());
-        addressFix.setDistrictName(row.getCell(AccountHolderConstants.DISTRICT_NAME).getStringCellValue());
-        addressFix.setPOB(row.getCell(AccountHolderConstants.POB).getStringCellValue());
-        addressFix.setPostCode(row.getCell(AccountHolderConstants.POST_CODE).getStringCellValue());
-        addressFix.setCity(row.getCell(AccountHolderConstants.CITY).getStringCellValue());			
+        CellUtil.getValue(row.getCell(AccountHolderConstants.STREET)).ifPresent(value ->
+            addressFix.setStreet(value)
+        );
+        CellUtil.getValue(row.getCell(AccountHolderConstants.BUILDING_IDENTIFIER)).ifPresent(value ->
+            addressFix.setBuildingIdentifier(value)
+        );
+        CellUtil.getValue(row.getCell(AccountHolderConstants.SUITE_IDENTIFIER)).ifPresent(value ->
+            addressFix.setSuiteIdentifier(value)
+        );
+        CellUtil.getValue(row.getCell(AccountHolderConstants.FLOOR_IDENTIFIER)).ifPresent(value ->
+            addressFix.setFloorIdentifier(value)
+        );
+        CellUtil.getValue(row.getCell(AccountHolderConstants.DISTRICT_NAME)).ifPresent(value ->
+            addressFix.setDistrictName(value)
+        );
+        CellUtil.getValue(row.getCell(AccountHolderConstants.POB)).ifPresent(value ->
+            addressFix.setPOB(value)
+        );
+        CellUtil.getValue(row.getCell(AccountHolderConstants.POST_CODE)).ifPresent(value ->
+            addressFix.setPostCode(value)
+        );
+        CellUtil.getValue(row.getCell(AccountHolderConstants.CITY)).ifPresent(value ->
+            addressFix.setCity(value)
+        );			
 
-        address.setLegalAddressType(OECDLegalAddressTypeEnumType.valueOf(CellUtil.convertOecdType(row.getCell(AccountHolderConstants.ADDRESS_TYPE).getStringCellValue())));
-        address.getContent().add(objectFactory.createAddressTypeCountryCode(CountryCodeType.valueOf(row.getCell(AccountHolderConstants.COUNTRY_CODE).getStringCellValue())));
+        CellUtil.getValue(row.getCell(AccountHolderConstants.ADDRESS_TYPE)).ifPresent(value ->
+            address.setLegalAddressType(OECDLegalAddressTypeEnumType.valueOf(CellUtil.convertOecdType(value)))
+        );
+        CellUtil.getValue(row.getCell(AccountHolderConstants.COUNTRY_CODE)).ifPresent(value ->
+            address.getContent().add(objectFactory.createAddressTypeCountryCode(CountryCodeType.valueOf(value)))
+        );
         address.getContent().add(objectFactory.createAddressTypeAddressFix(addressFix));
 
         return address;
@@ -322,7 +342,9 @@ public class AccountHolderTransformer implements Transformer {
                                                 Integer.valueOf(date.substring(5, 7)) - 1, 
                                                 Integer.valueOf(date.substring(8, 10))));
         birth.setBirthDate(birthDate);
-        birth.setCity(row.getCell(AccountHolderConstants.BIRTH_CITY).getStringCellValue());
+        CellUtil.getValue(row.getCell(AccountHolderConstants.BIRTH_CITY)).ifPresent(value ->
+            birth.setCity(value)
+        );
 
         CellUtil.getValue(row.getCell(AccountHolderConstants.BIRTH_COUNTRY_CODE)).ifPresent(value -> {
                 CountryInfo countryInfo = objectFactory.createPersonPartyTypeBirthInfoCountryInfo();

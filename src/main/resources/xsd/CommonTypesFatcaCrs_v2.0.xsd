@@ -1,19 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- edited with XMLSpy v2011 rel. 3 (http://www.altova.com) by IRS (Internal Revenue Service) -->
-<xsd:schema xmlns:cfc="urn:oecd:ties:commontypesfatcacrs:v1" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:stf="urn:oecd:ties:stf:v4" xmlns:iso="urn:oecd:ties:isocrstypes:v1" targetNamespace="urn:oecd:ties:commontypesfatcacrs:v1" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0">
-	<xsd:import namespace="urn:oecd:ties:isocrstypes:v1" schemaLocation="isocrstypes_v1.0.xsd"/>
-	<xsd:import namespace="urn:oecd:ties:stf:v4" schemaLocation="oecdtypes_v4.1.xsd"/>
+<!-- edited with XMLSpy v2012 rel. 2 sp1 (x64) (http://www.altova.com) by Sebastien Michon (OECD) -->
+<xsd:schema xmlns:cfc="urn:oecd:ties:commontypesfatcacrs:v2" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:stf="urn:oecd:ties:crsstf:v5" xmlns:iso="urn:oecd:ties:isocrstypes:v1" targetNamespace="urn:oecd:ties:commontypesfatcacrs:v2" elementFormDefault="qualified" attributeFormDefault="unqualified" version="2.0">
+	<xsd:import namespace="urn:oecd:ties:isocrstypes:v1" schemaLocation="isocrstypes_v1.1.xsd"/>
+	<xsd:import namespace="urn:oecd:ties:crsstf:v5" schemaLocation="oecdcrstypes_v5.0.xsd"/>
 	<!--+++++++++++++++++++++++  Reusable Simple types ++++++++++++++++++++++++++++++++++++++ -->
-	<!-- -->
-	<!-- String with minimum length 1 - data type for TIN_Type -->
-	<xsd:simpleType name="String1MinLength_Type">
-		<xsd:annotation>
-			<xsd:documentation xml:lang="en">Introduce a min length</xsd:documentation>
-		</xsd:annotation>
-		<xsd:restriction base="xsd:string">
-			<xsd:minLength value="1"/>
-		</xsd:restriction>
-	</xsd:simpleType>
 	<!-- -->
 	<!-- Data type for any kind of numeric data with two decimal fraction digits, especially monetary amounts -->
 	<xsd:simpleType name="TwoDigFract_Type">
@@ -71,15 +61,15 @@
 			</xsd:documentation>
 		</xsd:annotation>
 		<xsd:sequence>
-			<xsd:element name="Street" type="xsd:string" minOccurs="0"/>
-			<xsd:element name="BuildingIdentifier" type="xsd:string" minOccurs="0"/>
-			<xsd:element name="SuiteIdentifier" type="xsd:string" minOccurs="0"/>
-			<xsd:element name="FloorIdentifier" type="xsd:string" minOccurs="0"/>
-			<xsd:element name="DistrictName" type="xsd:string" minOccurs="0"/>
-			<xsd:element name="POB" type="xsd:string" minOccurs="0"/>
-			<xsd:element name="PostCode" type="xsd:string" minOccurs="0"/>
-			<xsd:element name="City" type="xsd:string"/>
-			<xsd:element name="CountrySubentity" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="Street" type="stf:StringMin1Max200_Type" minOccurs="0"/>
+			<xsd:element name="BuildingIdentifier" type="stf:StringMin1Max200_Type" minOccurs="0"/>
+			<xsd:element name="SuiteIdentifier" type="stf:StringMin1Max200_Type" minOccurs="0"/>
+			<xsd:element name="FloorIdentifier" type="stf:StringMin1Max200_Type" minOccurs="0"/>
+			<xsd:element name="DistrictName" type="stf:StringMin1Max200_Type" minOccurs="0"/>
+			<xsd:element name="POB" type="stf:StringMin1Max200_Type" minOccurs="0"/>
+			<xsd:element name="PostCode" type="stf:StringMin1Max200_Type" minOccurs="0"/>
+			<xsd:element name="City" type="stf:StringMin1Max200_Type"/>
+			<xsd:element name="CountrySubentity" type="stf:StringMin1Max200_Type" minOccurs="0"/>
 		</xsd:sequence>
 	</xsd:complexType>
 	<!--  -->
@@ -93,10 +83,10 @@
 		<xsd:sequence>
 			<xsd:element name="CountryCode" type="iso:CountryCode_Type"/>
 			<xsd:choice>
-				<xsd:element name="AddressFree" type="xsd:string"/>
+				<xsd:element name="AddressFree" type="stf:StringMin1Max4000_Type"/>
 				<xsd:sequence>
 					<xsd:element name="AddressFix" type="cfc:AddressFix_Type"/>
-					<xsd:element name="AddressFree" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="AddressFree" type="stf:StringMin1Max4000_Type" minOccurs="0"/>
 				</xsd:sequence>
 			</xsd:choice>
 		</xsd:sequence>
@@ -125,7 +115,7 @@ taken from the ISO codelist 4217 and added in attribute currCode.
 			<xsd:documentation xml:lang="en">Name of organisation</xsd:documentation>
 		</xsd:annotation>
 		<xsd:simpleContent>
-			<xsd:extension base="xsd:string">
+			<xsd:extension base="stf:StringMin1Max200_Type">
 				<xsd:attribute name="nameType" type="stf:OECDNameType_EnumType" use="optional"/>
 			</xsd:extension>
 		</xsd:simpleContent>
@@ -137,7 +127,7 @@ taken from the ISO codelist 4217 and added in attribute currCode.
 			<xsd:documentation xml:lang="en">This is the identification number/identification code for the party in question. As the identifier may be not strictly numeric, it is just defined as a string of characters. Attribute 'issuedBy' is required to designate the issuer of the identifier. </xsd:documentation>
 		</xsd:annotation>
 		<xsd:simpleContent>
-			<xsd:extension base="cfc:String1MinLength_Type">
+			<xsd:extension base="stf:StringMin1Max200_Type">
 				<xsd:attribute name="issuedBy" type="iso:CountryCode_Type" use="optional">
 					<xsd:annotation>
 						<xsd:documentation xml:lang="en">Country code of issuing country, indicating country of Residence (to taxes and other)</xsd:documentation>

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- edited with XMLSpy v2012 rel. 2 sp1 (http://www.altova.com) by OECD OECD (OECD) -->
-<xsd:schema xmlns:crs="urn:oecd:ties:crs:v1" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ftc="urn:oecd:ties:fatca:v1" xmlns:cfc="urn:oecd:ties:commontypesfatcacrs:v1" xmlns:stf="urn:oecd:ties:stf:v4" xmlns:iso="urn:oecd:ties:isocrstypes:v1" targetNamespace="urn:oecd:ties:crs:v1" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0">
-	<xsd:import namespace="urn:oecd:ties:isocrstypes:v1" schemaLocation="isocrstypes_v1.0.xsd"/>
-	<xsd:import namespace="urn:oecd:ties:stf:v4" schemaLocation="oecdtypes_v4.1.xsd"/>
-	<xsd:import namespace="urn:oecd:ties:commontypesfatcacrs:v1" schemaLocation="CommonTypesFatcaCrs_v1.1.xsd"/>
-	<xsd:import namespace="urn:oecd:ties:fatca:v1" schemaLocation="FatcaTypes_v1.1.xsd"/>
+<!-- edited with XMLSpy v2012 rel. 2 sp1 (x64) (http://www.altova.com) by Sebastien Michon (OECD) -->
+<xsd:schema xmlns:crs="urn:oecd:ties:crs:v2" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ftc="urn:oecd:ties:fatca:v1" xmlns:cfc="urn:oecd:ties:commontypesfatcacrs:v2" xmlns:stf="urn:oecd:ties:crsstf:v5" xmlns:iso="urn:oecd:ties:isocrstypes:v1" targetNamespace="urn:oecd:ties:crs:v2" elementFormDefault="qualified" attributeFormDefault="unqualified" version="2.0">
+	<xsd:import namespace="urn:oecd:ties:isocrstypes:v1" schemaLocation="isocrstypes_v1.1.xsd"/>
+	<xsd:import namespace="urn:oecd:ties:crsstf:v5" schemaLocation="oecdcrstypes_v5.0.xsd"/>
+	<xsd:import namespace="urn:oecd:ties:commontypesfatcacrs:v2" schemaLocation="CommonTypesFatcaCrs_v2.0.xsd"/>
+	<xsd:import namespace="urn:oecd:ties:fatca:v1" schemaLocation="FatcaTypes_v1.2.xsd"/>
 	<!--+++++++++++++++++++++++  Reusable Simple types ++++++++++++++++++++++++++++++++++++++ -->
 	<!-- Message type definitions -->
 	<xsd:simpleType name="MessageType_EnumType">
@@ -175,31 +175,31 @@
 			<xsd:documentation xml:lang="en">Information in the message header identifies the Tax Administration that is sending the message.  It specifies when the message was created, what period (normally a year) the report is for, and the nature of the report (original, corrected, supplemental, etc).</xsd:documentation>
 		</xsd:annotation>
 		<xsd:sequence>
-			<xsd:element name="SendingCompanyIN" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="SendingCompanyIN" type="stf:StringMin1Max200_Type" minOccurs="0"/>
 			<xsd:element name="TransmittingCountry" type="iso:CountryCode_Type"/>
 			<xsd:element name="ReceivingCountry" type="iso:CountryCode_Type"/>
 			<!-- modified for CRS  -->
 			<xsd:element name="MessageType" type="crs:MessageType_EnumType"/>
-			<xsd:element name="Warning" type="xsd:string" minOccurs="0">
+			<xsd:element name="Warning" type="stf:StringMin1Max4000_Type" minOccurs="0">
 				<xsd:annotation>
 					<xsd:documentation xml:lang="en">Free text expressing the restrictions for use of the information this
 message contains and the legal framework under which it is given</xsd:documentation>
 				</xsd:annotation>
 			</xsd:element>
-			<xsd:element name="Contact" type="xsd:string" minOccurs="0">
+			<xsd:element name="Contact" type="stf:StringMin1Max4000_Type" minOccurs="0">
 				<xsd:annotation>
 					<xsd:documentation xml:lang="en">All necessary contact information about persons responsible for and
 involved in the processing of the data transmitted in this message, both legally and technically. Free text as this is not
 intended for automatic processing. </xsd:documentation>
 				</xsd:annotation>
 			</xsd:element>
-			<xsd:element name="MessageRefId" type="xsd:string">
+			<xsd:element name="MessageRefId" type="stf:StringMin1Max170_Type">
 				<xsd:annotation>
 					<xsd:documentation xml:lang="en">Sender's unique identifier for this message</xsd:documentation>
 				</xsd:annotation>
 			</xsd:element>
-			<xsd:element name="MessageTypeIndic" type="crs:CrsMessageTypeIndic_EnumType" minOccurs="0"/>
-			<xsd:element name="CorrMessageRefId" type="xsd:string" minOccurs="0" maxOccurs="unbounded">
+			<xsd:element name="MessageTypeIndic" type="crs:CrsMessageTypeIndic_EnumType"/>
+			<xsd:element name="CorrMessageRefId" type="stf:StringMin1Max170_Type" minOccurs="0" maxOccurs="unbounded">
 				<xsd:annotation>
 					<xsd:documentation xml:lang="en">Sender's unique identifier that has to be corrected.  Must point to 1 or more previous message</xsd:documentation>
 				</xsd:annotation>
@@ -241,7 +241,7 @@ the current message.</xsd:documentation>
 			<xsd:documentation xml:lang="en">Account number definition  </xsd:documentation>
 		</xsd:annotation>
 		<xsd:simpleContent>
-			<xsd:extension base="xsd:string">
+			<xsd:extension base="stf:StringMin1Max200_Type">
 				<xsd:attribute name="AcctNumberType" type="cfc:AcctNumberType_EnumType">
 					<xsd:annotation>
 						<xsd:documentation xml:lang="en">Account Number Type</xsd:documentation>
@@ -284,12 +284,12 @@ the current message.</xsd:documentation>
 			<xsd:documentation xml:lang="en">The user must spread the data about the name of a party over up to six elements. The container element for this will be 'NameFix'. </xsd:documentation>
 		</xsd:annotation>
 		<xsd:sequence>
-			<xsd:element name="PrecedingTitle" type="xsd:string" minOccurs="0">
+			<xsd:element name="PrecedingTitle" type="stf:StringMin1Max200_Type" minOccurs="0">
 				<xsd:annotation>
 					<xsd:documentation xml:lang="en">His Excellency,Estate of the Late ...</xsd:documentation>
 				</xsd:annotation>
 			</xsd:element>
-			<xsd:element name="Title" type="xsd:string" minOccurs="0" maxOccurs="unbounded">
+			<xsd:element name="Title" type="stf:StringMin1Max200_Type" minOccurs="0" maxOccurs="unbounded">
 				<xsd:annotation>
 					<xsd:documentation xml:lang="en">Greeting title. Example: Mr, Dr, Ms, Herr, etc. Can have multiple titles.</xsd:documentation>
 				</xsd:annotation>
@@ -300,8 +300,8 @@ the current message.</xsd:documentation>
 				</xsd:annotation>
 				<xsd:complexType>
 					<xsd:simpleContent>
-						<xsd:extension base="xsd:string">
-							<xsd:attribute name="xnlNameType">
+						<xsd:extension base="stf:StringMin1Max200_Type">
+							<xsd:attribute name="xnlNameType" type="stf:StringMin1Max200_Type">
 								<xsd:annotation>
 									<xsd:documentation xml:lang="en">Defines the name type of FirstName. Example: Given Name, Forename, Christian Name, Father's Name, etc. In some countries, FirstName could be a Family Name or a SurName. Use this attribute to define the type for this name.
 									</xsd:documentation>
@@ -317,8 +317,8 @@ the current message.</xsd:documentation>
 				</xsd:annotation>
 				<xsd:complexType>
 					<xsd:simpleContent>
-						<xsd:extension base="xsd:string">
-							<xsd:attribute name="xnlNameType">
+						<xsd:extension base="stf:StringMin1Max200_Type">
+							<xsd:attribute name="xnlNameType" type="stf:StringMin1Max200_Type">
 								<xsd:annotation>
 									<xsd:documentation xml:lang="en">Defines the name type of Middle Name. Example: First name, middle name, maiden name, father's name, given name, etc.
 									</xsd:documentation>
@@ -334,8 +334,8 @@ the current message.</xsd:documentation>
 				</xsd:annotation>
 				<xsd:complexType>
 					<xsd:simpleContent>
-						<xsd:extension base="xsd:string">
-							<xsd:attribute name="xnlNameType">
+						<xsd:extension base="stf:StringMin1Max200_Type">
+							<xsd:attribute name="xnlNameType" type="stf:StringMin1Max200_Type">
 								<xsd:annotation>
 									<xsd:documentation xml:lang="en">Defines the type of name associated with the NamePrefix. For example the type of name is LastName and this prefix is the prefix for this last name.
 							</xsd:documentation>
@@ -352,8 +352,8 @@ In case of a company, this field can be used for the company name.</xsd:document
 				</xsd:annotation>
 				<xsd:complexType>
 					<xsd:simpleContent>
-						<xsd:extension base="xsd:string">
-							<xsd:attribute name="xnlNameType">
+						<xsd:extension base="stf:StringMin1Max200_Type">
+							<xsd:attribute name="xnlNameType" type="stf:StringMin1Max200_Type">
 								<xsd:annotation>
 									<xsd:documentation xml:lang="en">Defines the name type of LastName. Example: Father's name, Family name, Sur Name, Mother's Name, etc. In some countries, LastName could be the given name or first name.
 									</xsd:documentation>
@@ -363,17 +363,17 @@ In case of a company, this field can be used for the company name.</xsd:document
 					</xsd:simpleContent>
 				</xsd:complexType>
 			</xsd:element>
-			<xsd:element name="GenerationIdentifier" type="xsd:string" minOccurs="0" maxOccurs="unbounded">
+			<xsd:element name="GenerationIdentifier" type="stf:StringMin1Max200_Type" minOccurs="0" maxOccurs="unbounded">
 				<xsd:annotation>
 					<xsd:documentation xml:lang="en">Jnr, Thr Third, III</xsd:documentation>
 				</xsd:annotation>
 			</xsd:element>
-			<xsd:element name="Suffix" type="xsd:string" minOccurs="0" maxOccurs="unbounded">
+			<xsd:element name="Suffix" type="stf:StringMin1Max200_Type" minOccurs="0" maxOccurs="unbounded">
 				<xsd:annotation>
 					<xsd:documentation xml:lang="en">Could be compressed initials - PhD, VC, QC</xsd:documentation>
 				</xsd:annotation>
 			</xsd:element>
-			<xsd:element name="GeneralSuffix" type="xsd:string" minOccurs="0">
+			<xsd:element name="GeneralSuffix" type="stf:StringMin1Max200_Type" minOccurs="0">
 				<xsd:annotation>
 					<xsd:documentation xml:lang="en">Deceased, Retired ...</xsd:documentation>
 				</xsd:annotation>
@@ -402,13 +402,13 @@ all of the subelements are defined elsewhere in this schema.</xsd:documentation>
 				<xsd:complexType>
 					<xsd:sequence>
 						<xsd:element name="BirthDate" type="xsd:date" minOccurs="0"/>
-						<xsd:element name="City" type="xsd:string" minOccurs="0"/>
-						<xsd:element name="CitySubentity" type="xsd:string" minOccurs="0"/>
+						<xsd:element name="City" type="stf:StringMin1Max200_Type" minOccurs="0"/>
+						<xsd:element name="CitySubentity" type="stf:StringMin1Max200_Type" minOccurs="0"/>
 						<xsd:element name="CountryInfo" minOccurs="0">
 							<xsd:complexType>
 								<xsd:choice>
 									<xsd:element name="CountryCode" type="iso:CountryCode_Type"/>
-									<xsd:element name="FormerCountryName" type="xsd:string"/>
+									<xsd:element name="FormerCountryName" type="stf:StringMin1Max200_Type"/>
 								</xsd:choice>
 							</xsd:complexType>
 						</xsd:element>
@@ -424,13 +424,13 @@ all of the subelements are defined elsewhere in this schema.</xsd:documentation>
 			<xsd:documentation xml:lang="en">This is the identification number/identification code for the Entity in question. As the identifier may be not strictly numeric, it is just defined as a string of characters. Attribute 'issuedBy' is required to designate the issuer of the identifier.  Attribute 'INType' defines the type of identification number. </xsd:documentation>
 		</xsd:annotation>
 		<xsd:simpleContent>
-			<xsd:extension base="cfc:String1MinLength_Type">
+			<xsd:extension base="stf:StringMin1Max200_Type">
 				<xsd:attribute name="issuedBy" type="iso:CountryCode_Type" use="optional">
 					<xsd:annotation>
 						<xsd:documentation xml:lang="en">Country code of issuing country, indicating country of Residence (to taxes and other)</xsd:documentation>
 					</xsd:annotation>
 				</xsd:attribute>
-				<xsd:attribute name="INType" type="xsd:string" use="optional">
+				<xsd:attribute name="INType" type="stf:StringMin1Max200_Type" use="optional">
 					<xsd:annotation>
 						<xsd:documentation xml:lang="en">Identification Number Type</xsd:documentation>
 					</xsd:annotation>
@@ -520,11 +520,11 @@ all of the subelements are defined elsewhere in this schema.</xsd:documentation>
 		<xsd:complexType>
 			<xsd:sequence>
 				<xsd:element name="MessageSpec" type="crs:MessageSpec_Type"/>
-				<xsd:element name="CrsBody" type="crs:CrsBody_Type" maxOccurs="unbounded"/>
+				<xsd:element name="CrsBody" type="crs:CrsBody_Type" minOccurs="0" maxOccurs="unbounded"/>
 			</xsd:sequence>
-			<xsd:attribute name="version" type="xsd:string">
+			<xsd:attribute name="version" type="stf:StringMin1Max10_Type">
 				<xsd:annotation>
-					<xsd:documentation xml:lang="en">CRS Version </xsd:documentation>
+					<xsd:documentation xml:lang="en">CRS Version</xsd:documentation>
 				</xsd:annotation>
 			</xsd:attribute>
 		</xsd:complexType>

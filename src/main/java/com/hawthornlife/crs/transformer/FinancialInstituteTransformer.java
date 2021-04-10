@@ -71,7 +71,9 @@ public class FinancialInstituteTransformer implements Transformer {
                         .newXMLGregorianCalendar(new GregorianCalendar(Integer.valueOf(row.getCell(FinancialInstituteConstant.REPORTING_YEAR).getStringCellValue()), 11, 31));
         messageSpecType.setReportingPeriod(reportingPeriod);
 
-        messageSpecType.setContact(row.getCell(FinancialInstituteConstant.CONTACT).getStringCellValue());	
+        CellUtil.getValue(row.getCell(FinancialInstituteConstant.CONTACT)).ifPresent(value ->
+            messageSpecType.setContact(value)
+        );	
 
     }
 
@@ -153,20 +155,41 @@ public class FinancialInstituteTransformer implements Transformer {
         
         AddressType address = objectFactory.createAddressType();
         AddressFixType addressFix = objectFactory.createAddressFixType();
+     
+        CellUtil.getValue(row.getCell(FinancialInstituteConstant.STREET)).ifPresent(value ->
+            addressFix.setStreet(value)
+        );
+        CellUtil.getValue(row.getCell(FinancialInstituteConstant.BUILDING_IDENTIFIER)).ifPresent(value ->
+            addressFix.setBuildingIdentifier(value)
+        );
+        CellUtil.getValue(row.getCell(FinancialInstituteConstant.SUITE_IDENTIFIER)).ifPresent(value ->
+            addressFix.setSuiteIdentifier(value)
+        );
+        CellUtil.getValue(row.getCell(FinancialInstituteConstant.FLOOR_IDENTIFIER)).ifPresent(value ->
+            addressFix.setFloorIdentifier(value)
+        );
+        CellUtil.getValue(row.getCell(FinancialInstituteConstant.DISTRICT_NAME)).ifPresent(value ->
+            addressFix.setDistrictName(value)
+        );
+        CellUtil.getValue(row.getCell(FinancialInstituteConstant.POB)).ifPresent(value ->
+            addressFix.setPOB(value)
+        );
+        CellUtil.getValue(row.getCell(FinancialInstituteConstant.POST_CODE)).ifPresent(value ->
+            addressFix.setPostCode(value)
+        );
+        CellUtil.getValue(row.getCell(FinancialInstituteConstant.CITY)).ifPresent(value ->
+            addressFix.setCity(value)
+        );
 
-        addressFix.setStreet(row.getCell(FinancialInstituteConstant.STREET).getStringCellValue());
-        addressFix.setBuildingIdentifier(row.getCell(FinancialInstituteConstant.BUILDING_IDENTIFIER).getStringCellValue());
-        addressFix.setSuiteIdentifier(row.getCell(FinancialInstituteConstant.SUITE_IDENTIFIER).getStringCellValue());
-        addressFix.setFloorIdentifier(row.getCell(FinancialInstituteConstant.FLOOR_IDENTIFIER).getStringCellValue());
-        addressFix.setDistrictName(row.getCell(FinancialInstituteConstant.DISTRICT_NAME).getStringCellValue());
-        addressFix.setPOB(row.getCell(FinancialInstituteConstant.POB).getStringCellValue());
-        addressFix.setPostCode(row.getCell(FinancialInstituteConstant.POST_CODE).getStringCellValue());
-        addressFix.setCity(row.getCell(FinancialInstituteConstant.CITY).getStringCellValue());
-
-        address.setLegalAddressType(OECDLegalAddressTypeEnumType.valueOf(CellUtil.convertOecdType(row.getCell(FinancialInstituteConstant.ADDRESS_TYPE).getStringCellValue())));
-        address.getContent().add(objectFactory.createAddressTypeCountryCode(CountryCodeType.valueOf(row.getCell(FinancialInstituteConstant.COUNTRY_CODE).getStringCellValue())));
-        address.getContent().add(objectFactory.createAddressTypeAddressFix(addressFix));		
-
+        CellUtil.getValue(row.getCell(FinancialInstituteConstant.ADDRESS_TYPE)).ifPresent(value ->
+            address.setLegalAddressType(OECDLegalAddressTypeEnumType.valueOf(CellUtil.convertOecdType(value)))
+        );
+        CellUtil.getValue(row.getCell(FinancialInstituteConstant.COUNTRY_CODE)).ifPresent(value ->
+            address.getContent().add(objectFactory.createAddressTypeCountryCode(CountryCodeType.valueOf(value)))
+        );
+        
+        address.getContent().add(objectFactory.createAddressTypeAddressFix(addressFix));
+                
         return address;
     }
 

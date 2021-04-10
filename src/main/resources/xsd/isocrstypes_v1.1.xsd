@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by Marita Thuer (Bundesamt fuer Finanzen) -->
-<xsd:schema xmlns:iso="urn:oecd:ties:isocrstypes:v1" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:oecd:ties:isocrstypes:v1" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0">
+<!-- edited with XMLSpy v2012 rel. 2 sp1 (x64) (http://www.altova.com) by Sebastien Michon (OECD) -->
+<xsd:schema xmlns:iso="urn:oecd:ties:isocrstypes:v1" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:oecd:ties:isocrstypes:v1" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.1">
 	<!--  ISO 3166 alpha 2 Country Code 
 
 The following disclaimer refers to all uses of the ISO country code list in the CRS schema: For practical reasons, the list is based on the ISO 3166-1 country list which is currently used by banks and other financial institutions, and hence by tax administrations. The use of this list does not imply the expression by the OECD of any opinion whatsoever concerning the legal status of the territories listed. Its content is without prejudice to the status of or sovereignty over any territory, to the delimitation of international frontiers and boundaries and to the name of any territory, city or area.  
@@ -212,7 +212,7 @@ The following disclaimer refers to all uses of the ISO country code list in the 
 			</xsd:enumeration>
 			<xsd:enumeration value="CV">
 				<xsd:annotation>
-					<xsd:documentation>CAPE VERDE</xsd:documentation>
+					<xsd:documentation>CABO VERDE</xsd:documentation>
 				</xsd:annotation>
 			</xsd:enumeration>
 			<xsd:enumeration value="KY">
@@ -307,7 +307,7 @@ The following disclaimer refers to all uses of the ISO country code list in the 
 			</xsd:enumeration>
 			<xsd:enumeration value="CZ">
 				<xsd:annotation>
-					<xsd:documentation>CZECH REPUBLIC</xsd:documentation>
+					<xsd:documentation>CZECHIA</xsd:documentation>
 				</xsd:annotation>
 			</xsd:enumeration>
 			<xsd:enumeration value="DK">
@@ -667,7 +667,7 @@ The following disclaimer refers to all uses of the ISO country code list in the 
 			</xsd:enumeration>
 			<xsd:enumeration value="MK">
 				<xsd:annotation>
-					<xsd:documentation>MACEDONIA, THE FORMER YUGOSLAV REPUBLIC OF</xsd:documentation>
+					<xsd:documentation>NORTH MACEDONIA</xsd:documentation>
 				</xsd:annotation>
 			</xsd:enumeration>
 			<xsd:enumeration value="MG">
@@ -1077,7 +1077,7 @@ The following disclaimer refers to all uses of the ISO country code list in the 
 			</xsd:enumeration>
 			<xsd:enumeration value="SZ">
 				<xsd:annotation>
-					<xsd:documentation>SWAZILAND</xsd:documentation>
+					<xsd:documentation>ESWATINI</xsd:documentation>
 				</xsd:annotation>
 			</xsd:enumeration>
 			<xsd:enumeration value="SE">
@@ -1182,7 +1182,7 @@ The following disclaimer refers to all uses of the ISO country code list in the 
 			</xsd:enumeration>
 			<xsd:enumeration value="GB">
 				<xsd:annotation>
-					<xsd:documentation>UNITED KINGDOM</xsd:documentation>
+					<xsd:documentation>UNITED KINGDOM OF GREAT BRITAIN AND NORTHERN IRELAND</xsd:documentation>
 				</xsd:annotation>
 			</xsd:enumeration>
 			<xsd:enumeration value="US">
@@ -1255,6 +1255,11 @@ The following disclaimer refers to all uses of the ISO country code list in the 
 					<xsd:documentation>ZIMBABWE</xsd:documentation>
 				</xsd:annotation>
 			</xsd:enumeration>
+			<xsd:enumeration value="XK">
+				<xsd:annotation>
+					<xsd:documentation>KOSOVO</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
 		</xsd:restriction>
 	</xsd:simpleType>
 	<!--   -->
@@ -1316,7 +1321,7 @@ The following disclaimer refers to all uses of the ISO currency code list in the
 			</xsd:enumeration>
 			<xsd:enumeration value="AZN">
 				<xsd:annotation>
-					<xsd:documentation>Azerbaijanian Manat: AZERBAIJAN</xsd:documentation>
+					<xsd:documentation>Azerbaijan Manat: AZERBAIJAN</xsd:documentation>
 				</xsd:annotation>
 			</xsd:enumeration>
 			<xsd:enumeration value="BAM">
@@ -1389,9 +1394,14 @@ The following disclaimer refers to all uses of the ISO currency code list in the
 					<xsd:documentation>Pula: BOTSWANA</xsd:documentation>
 				</xsd:annotation>
 			</xsd:enumeration>
+			<xsd:enumeration value="BYN">
+				<xsd:annotation>
+					<xsd:documentation>Belarusian Ruble: BELARUS</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
 			<xsd:enumeration value="BYR">
 				<xsd:annotation>
-					<xsd:documentation>Belarussian Ruble: BELARUS</xsd:documentation>
+					<xsd:documentation>Historic use: Belarussian Ruble: BELARUS</xsd:documentation>
 				</xsd:annotation>
 			</xsd:enumeration>
 			<xsd:enumeration value="BZD">
@@ -1426,7 +1436,7 @@ The following disclaimer refers to all uses of the ISO currency code list in the
 			</xsd:enumeration>
 			<xsd:enumeration value="CLF">
 				<xsd:annotation>
-					<xsd:documentation>Unidades de fomento: CHILE</xsd:documentation>
+					<xsd:documentation>Unidad de Fomento: CHILE</xsd:documentation>
 				</xsd:annotation>
 			</xsd:enumeration>
 			<xsd:enumeration value="CLP">
@@ -1466,12 +1476,12 @@ The following disclaimer refers to all uses of the ISO currency code list in the
 			</xsd:enumeration>
 			<xsd:enumeration value="CVE">
 				<xsd:annotation>
-					<xsd:documentation>Cape Verde Escudo: CAPE VERDE</xsd:documentation>
+					<xsd:documentation>Cabo Verde Escudo: CABO VERDE</xsd:documentation>
 				</xsd:annotation>
 			</xsd:enumeration>
 			<xsd:enumeration value="CZK">
 				<xsd:annotation>
-					<xsd:documentation>Czech Koruna: CZECH REPUBLIC</xsd:documentation>
+					<xsd:documentation>Czech Koruna: CZECHIA</xsd:documentation>
 				</xsd:annotation>
 			</xsd:enumeration>
 			<xsd:enumeration value="DJF">
@@ -1511,7 +1521,7 @@ The following disclaimer refers to all uses of the ISO currency code list in the
 			</xsd:enumeration>
 			<xsd:enumeration value="EUR">
 				<xsd:annotation>
-					<xsd:documentation>Euro: ALAND ISLANDS; ANDORRA; AUSTRIA; BELGIUM; CYPRUS; ESTONIA; EUROPEAN UNION; FINLAND; FRANCE; FRENCH GUIANA; FRENCH SOUTHERN TERRITORIES; GERMANY; GREECE; GUADELOUPE; HOLY SEE (VATICAN CITY STATE); IRELAND; ITALY; LUXEMBOURG; MALTA; MARTINIQUE; MAYOTTE; MONACO; MONTENEGRO; NETHERLANDS; PORTUGAL; REUNION; SAINT BARTHELEMY; SAINT MARTIN (FRENCH PART); SAINT PIERRE AND MIQUELON; SAN MARINO; SLOVAKIA; SLOVENIA; SPAIN; Vatican City State (HOLY SEE)</xsd:documentation>
+					<xsd:documentation>Euro: ALAND ISLANDS; ANDORRA; AUSTRIA; BELGIUM; CYPRUS; ESTONIA; EUROPEAN UNION; FINLAND; FRANCE; FRENCH GUIANA; FRENCH SOUTHERN TERRITORIES; GERMANY; GREECE; GUADELOUPE; HOLY SEE (VATICAN CITY STATE); IRELAND; ITALY; LATVIA; LITHUANIA; LUXEMBOURG; MALTA; MARTINIQUE; MAYOTTE; MONACO; MONTENEGRO; NETHERLANDS; PORTUGAL; REUNION; SAINT BARTHELEMY; SAINT MARTIN (FRENCH PART); SAINT PIERRE AND MIQUELON; SAN MARINO; SLOVAKIA; SLOVENIA; SPAIN; Vatican City State (HOLY SEE)</xsd:documentation>
 				</xsd:annotation>
 			</xsd:enumeration>
 			<xsd:enumeration value="FJD">
@@ -1526,7 +1536,7 @@ The following disclaimer refers to all uses of the ISO currency code list in the
 			</xsd:enumeration>
 			<xsd:enumeration value="GBP">
 				<xsd:annotation>
-					<xsd:documentation>Pound Sterling: GUERNSEY; ISLE OF MAN; JERSEY; UNITED KINGDOM</xsd:documentation>
+					<xsd:documentation>Pound Sterling: GUERNSEY; ISLE OF MAN; JERSEY; UNITED KINGDOM OF GREAT BRITAIN AND NORTHERN IRELAND</xsd:documentation>
 				</xsd:annotation>
 			</xsd:enumeration>
 			<xsd:enumeration value="GEL">
@@ -1551,7 +1561,7 @@ The following disclaimer refers to all uses of the ISO currency code list in the
 			</xsd:enumeration>
 			<xsd:enumeration value="GNF">
 				<xsd:annotation>
-					<xsd:documentation>Guinea Franc: GUINEA</xsd:documentation>
+					<xsd:documentation>Guinean Franc: GUINEA</xsd:documentation>
 				</xsd:annotation>
 			</xsd:enumeration>
 			<xsd:enumeration value="GTQ">
@@ -1576,7 +1586,7 @@ The following disclaimer refers to all uses of the ISO currency code list in the
 			</xsd:enumeration>
 			<xsd:enumeration value="HRK">
 				<xsd:annotation>
-					<xsd:documentation>Croatian Kuna: CROATIA</xsd:documentation>
+					<xsd:documentation>Kuna: CROATIA</xsd:documentation>
 				</xsd:annotation>
 			</xsd:enumeration>
 			<xsd:enumeration value="HTG">
@@ -1651,7 +1661,7 @@ The following disclaimer refers to all uses of the ISO currency code list in the
 			</xsd:enumeration>
 			<xsd:enumeration value="KMF">
 				<xsd:annotation>
-					<xsd:documentation>Comoro Franc: COMOROS</xsd:documentation>
+					<xsd:documentation>Comorian Franc : COMOROS</xsd:documentation>
 				</xsd:annotation>
 			</xsd:enumeration>
 			<xsd:enumeration value="KPW">
@@ -1681,7 +1691,7 @@ The following disclaimer refers to all uses of the ISO currency code list in the
 			</xsd:enumeration>
 			<xsd:enumeration value="LAK">
 				<xsd:annotation>
-					<xsd:documentation>Kip: LAO PEOPLE’S DEMOCRATIC REPUBLIC</xsd:documentation>
+					<xsd:documentation>Lao Kip: LAO PEOPLE’S DEMOCRATIC REPUBLIC</xsd:documentation>
 				</xsd:annotation>
 			</xsd:enumeration>
 			<xsd:enumeration value="LBP">
@@ -1706,12 +1716,12 @@ The following disclaimer refers to all uses of the ISO currency code list in the
 			</xsd:enumeration>
 			<xsd:enumeration value="LTL">
 				<xsd:annotation>
-					<xsd:documentation>Lithuanian Litas: LITHUANIA</xsd:documentation>
+					<xsd:documentation>Historic use: Lithuanian Litas: LITHUANIA</xsd:documentation>
 				</xsd:annotation>
 			</xsd:enumeration>
 			<xsd:enumeration value="LVL">
 				<xsd:annotation>
-					<xsd:documentation>Latvian Lats: LATVIA</xsd:documentation>
+					<xsd:documentation>Historic use: Latvian Lats: LATVIA</xsd:documentation>
 				</xsd:annotation>
 			</xsd:enumeration>
 			<xsd:enumeration value="LYD">
@@ -1756,6 +1766,11 @@ The following disclaimer refers to all uses of the ISO currency code list in the
 			</xsd:enumeration>
 			<xsd:enumeration value="MRO">
 				<xsd:annotation>
+					<xsd:documentation>Historic use: Ouguiya: MAURITANIA</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="MRU">
+				<xsd:annotation>
 					<xsd:documentation>Ouguiya: MAURITANIA</xsd:documentation>
 				</xsd:annotation>
 			</xsd:enumeration>
@@ -1771,7 +1786,7 @@ The following disclaimer refers to all uses of the ISO currency code list in the
 			</xsd:enumeration>
 			<xsd:enumeration value="MWK">
 				<xsd:annotation>
-					<xsd:documentation>Kwacha: MALAWI</xsd:documentation>
+					<xsd:documentation>Malawi Kwacha: MALAWI</xsd:documentation>
 				</xsd:annotation>
 			</xsd:enumeration>
 			<xsd:enumeration value="MXN">
@@ -1836,7 +1851,7 @@ The following disclaimer refers to all uses of the ISO currency code list in the
 			</xsd:enumeration>
 			<xsd:enumeration value="PEN">
 				<xsd:annotation>
-					<xsd:documentation>Nuevo Sol: PERU</xsd:documentation>
+					<xsd:documentation>Sol: PERU</xsd:documentation>
 				</xsd:annotation>
 			</xsd:enumeration>
 			<xsd:enumeration value="PGK">
@@ -1871,7 +1886,7 @@ The following disclaimer refers to all uses of the ISO currency code list in the
 			</xsd:enumeration>
 			<xsd:enumeration value="RON">
 				<xsd:annotation>
-					<xsd:documentation>New Romanian Leu: ROMANIA</xsd:documentation>
+					<xsd:documentation>Romanian Leu: ROMANIA</xsd:documentation>
 				</xsd:annotation>
 			</xsd:enumeration>
 			<xsd:enumeration value="RSD">
@@ -1946,6 +1961,11 @@ The following disclaimer refers to all uses of the ISO currency code list in the
 			</xsd:enumeration>
 			<xsd:enumeration value="STD">
 				<xsd:annotation>
+					<xsd:documentation>Historic use: Dobra: SAO TOME AND PRINCIPE</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="STN">
+				<xsd:annotation>
 					<xsd:documentation>Dobra: SAO TOME AND PRINCIPE</xsd:documentation>
 				</xsd:annotation>
 			</xsd:enumeration>
@@ -1961,7 +1981,7 @@ The following disclaimer refers to all uses of the ISO currency code list in the
 			</xsd:enumeration>
 			<xsd:enumeration value="SZL">
 				<xsd:annotation>
-					<xsd:documentation>Lilangeni: SWAZILAND</xsd:documentation>
+					<xsd:documentation>Lilangeni: ESWATINI</xsd:documentation>
 				</xsd:annotation>
 			</xsd:enumeration>
 			<xsd:enumeration value="THB">
@@ -2021,7 +2041,7 @@ The following disclaimer refers to all uses of the ISO currency code list in the
 			</xsd:enumeration>
 			<xsd:enumeration value="USD">
 				<xsd:annotation>
-					<xsd:documentation>US Dollar: AMERICAN SAMOA; BONAIRE; SINT EUSTATIUS AND SABA; BRITISH INDIAN OCEAN TERRITORY; ECUADOR; EL SALVADOR; GUAM; HAITI; MARSHALL ISLANDS; MICRONESIA, FEDERATED STATES OF; NORTHERN MARIANA ISLANDS; PALAU; PANAMA; PUERTO RICO; TIMOR-LESTE; TURKS AND CAICOS ISLANDS, UNITED STATES; UNITED STATES MINOR OUTLYING ISLANDS; VIRGIN ISLANDS (BRITISH); VIRGIN ISLANDS (US)</xsd:documentation>
+					<xsd:documentation>US Dollar: AMERICAN SAMOA; BONAIRE; SINT EUSTATIUS AND SABA; BRITISH INDIAN OCEAN TERRITORY; ECUADOR; EL SALVADOR; GUAM; HAITI; MARSHALL ISLANDS; MICRONESIA, FEDERATED STATES OF; NORTHERN MARIANA ISLANDS; PALAU; PANAMA; PUERTO RICO; TIMOR-LESTE; TURKS AND CAICOS ISLANDS; UNITED STATES; UNITED STATES MINOR OUTLYING ISLANDS; VIRGIN ISLANDS (BRITISH); VIRGIN ISLANDS (US)</xsd:documentation>
 				</xsd:annotation>
 			</xsd:enumeration>
 			<xsd:enumeration value="USN">
@@ -2031,17 +2051,22 @@ The following disclaimer refers to all uses of the ISO currency code list in the
 			</xsd:enumeration>
 			<xsd:enumeration value="USS">
 				<xsd:annotation>
-					<xsd:documentation> US Dollar (Same day): UNITED STATES</xsd:documentation>
+					<xsd:documentation>Historic use: US Dollar (Same day): UNITED STATES</xsd:documentation>
 				</xsd:annotation>
 			</xsd:enumeration>
 			<xsd:enumeration value="UYI">
 				<xsd:annotation>
-					<xsd:documentation>Uruguay Peso en Unidades Indexadas (URUIURUI): URUGUAY</xsd:documentation>
+					<xsd:documentation>Uruguay Peso en Unidades Indexadas (UI): URUGUAY</xsd:documentation>
 				</xsd:annotation>
 			</xsd:enumeration>
 			<xsd:enumeration value="UYU">
 				<xsd:annotation>
 					<xsd:documentation>Peso Uruguayo: URUGUAY</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="UYW">
+				<xsd:annotation>
+					<xsd:documentation>Unidad Previsional: URUGUAY</xsd:documentation>
 				</xsd:annotation>
 			</xsd:enumeration>
 			<xsd:enumeration value="UZS">
@@ -2051,7 +2076,12 @@ The following disclaimer refers to all uses of the ISO currency code list in the
 			</xsd:enumeration>
 			<xsd:enumeration value="VEF">
 				<xsd:annotation>
-					<xsd:documentation>Bolivar: VENEZUELA, BOLIVARIAN REPUBLIC OF</xsd:documentation>
+					<xsd:documentation>Historic use: Bolivar: VENEZUELA, BOLIVARIAN REPUBLIC OF</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="VES">
+				<xsd:annotation>
+					<xsd:documentation>Bolívar Soberano: VENEZUELA, BOLIVARIAN REPUBLIC OF</xsd:documentation>
 				</xsd:annotation>
 			</xsd:enumeration>
 			<xsd:enumeration value="VND">
@@ -2116,7 +2146,7 @@ The following disclaimer refers to all uses of the ISO currency code list in the
 			</xsd:enumeration>
 			<xsd:enumeration value="XFU">
 				<xsd:annotation>
-					<xsd:documentation>UIC-Franc: ZZ05_UIC-Franc</xsd:documentation>
+					<xsd:documentation>Historic use: UIC-Franc: ZZ05_UIC-Franc</xsd:documentation>
 				</xsd:annotation>
 			</xsd:enumeration>
 			<xsd:enumeration value="XOF">

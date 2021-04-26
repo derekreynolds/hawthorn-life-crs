@@ -44,7 +44,7 @@ public class XmlGenerator {
             this.file = file;
             this.spreadsheetReader = new SpreadsheetReader(file);
             this.financialInstituteTransformer = new FinancialInstituteTransformer(crsOecd);
-            this.accountHolderTransformer = new AccountHolderTransformer(new ControllingPersonTransformer(spreadsheetReader), crsOecd);
+            this.accountHolderTransformer = new AccountHolderTransformer(spreadsheetReader, new ControllingPersonTransformer(spreadsheetReader), crsOecd);
 	}
 	
 	

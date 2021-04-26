@@ -1,5 +1,6 @@
 package com.hawthornlife.crs.util;
 
+import java.util.Objects;
 import java.util.Optional;
 
 import org.apache.commons.lang3.StringUtils;
@@ -10,12 +11,15 @@ public class CellUtil {
 	
 	public static Optional<String> getValue(final Cell cell) {
 		
-		String value = cell.getStringCellValue();
-		
-		if(StringUtils.isBlank(value))
-			value = null;
-			
-		return Optional.ofNullable(value);	
+            if(Objects.isNull(cell))
+                return Optional.empty();
+
+            String value = cell.getStringCellValue();
+
+            if(StringUtils.isBlank(value))
+                    value = null;
+
+            return Optional.ofNullable(value);	
 	}
 	
 	public static String convertOecdType(final String type) {

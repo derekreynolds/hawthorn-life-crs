@@ -1,5 +1,6 @@
 package com.hawthornlife.crs.transformer;
 
+import com.hawthornlife.crs.SpreadsheetReader;
 import java.math.BigDecimal;
 import java.util.GregorianCalendar;
 import java.util.List;
@@ -37,6 +38,8 @@ import com.hawthornlife.crs.xml.PaymentType;
 import com.hawthornlife.crs.xml.PersonPartyType;
 import com.hawthornlife.crs.xml.PersonPartyType.BirthInfo;
 import com.hawthornlife.crs.xml.PersonPartyType.BirthInfo.CountryInfo;
+import java.util.Calendar;
+import java.util.Objects;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -48,11 +51,22 @@ public class AccountHolderTransformer implements Transformer {
     private final CRSOECD crsOecd;
 
     private final ControllingPersonTransformer controllingPersonTransformer;
+    
+    private final SpreadsheetReader spreadsheetReader;
+    
+    private final String now = "" + GregorianCalendar.getInstance().getTime().getTime();
+    
+    private final String transmittingCountry;
 
 
-    public AccountHolderTransformer(final ControllingPersonTransformer controllingPersonTransformer, final CRSOECD crsOecd) {
+    public AccountHolderTransformer(final SpreadsheetReader spreadsheetReader, 
+            final ControllingPersonTransformer controllingPersonTransformer, 
+            final CRSOECD crsOecd) {
+        this.spreadsheetReader = spreadsheetReader;
         this.controllingPersonTransformer = controllingPersonTransformer;
         this.crsOecd = crsOecd;
+        this.transmittingCountry =  this.spreadsheetReader.getFinancialInstituteRow()
+                .getCell(FinancialInstituteConstant.TRANSMITTING_COUNTRY).getStringCellValue();
     }
 
     @Override
@@ -113,7 +127,14 @@ public class AccountHolderTransformer implements Transformer {
 
         docSpec.setDocTypeIndic(OECDDocTypeIndicEnumType.OECD_1);
 
-        docSpec.setDocRefId(row.getCell(AccountHolderConstants.ACCOUNT_NAME).getStringCellValue() + "-" + row.getRowNum());
+        StringBuilder docRefId = new StringBuilder(this.transmittingCountry);
+        docRefId.append(row.getCell(AccountHolderConstants.ACCOUNT_NAME).getStringCellValue());
+        docRefId.append("-");
+        docRefId.append(row.getRowNum());
+        docRefId.append("-");
+        docRefId.append(this.now);
+        
+        docSpec.setDocRefId(docRefId.toString());
 
         return docSpec;
     }
@@ -250,7 +271,8 @@ public class AccountHolderTransformer implements Transformer {
         organisationParty.getName().add(createNameOrganisation(row));
         addResCountryCode(organisationParty.getResCountryCode(), row);
 
-        if(!StringUtils.isBlank(row.getCell(AccountHolderConstants.TIN).getStringCellValue())) {
+        if(Objects.nonNull(row.getCell(AccountHolderConstants.TIN)) 
+                && !StringUtils.isBlank(row.getCell(AccountHolderConstants.TIN).getStringCellValue())) {
                 organisationParty.getIN().add(createOrganisationINType(row));
         }
         organisationParty.getAddress().add(createAddress(row));

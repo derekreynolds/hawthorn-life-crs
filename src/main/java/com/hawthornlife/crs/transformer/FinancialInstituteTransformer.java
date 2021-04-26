@@ -59,7 +59,7 @@ public class FinancialInstituteTransformer implements Transformer {
         MessageSpecType messageSpecType = objectFactory.createMessageSpecType();
         crsOecd.setMessageSpec(messageSpecType);
 
-        messageSpecType.setSendingCompanyIN(row.getCell(FinancialInstituteConstant.SENDING_COMPANY_ID_NUMBER).getStringCellValue());
+        //messageSpecType.setSendingCompanyIN(row.getCell(FinancialInstituteConstant.SENDING_COMPANY_ID_NUMBER).getStringCellValue());
         messageSpecType.setMessageRefId(getMessageRefId(row));
         messageSpecType.setTimestamp(DatatypeFactory.newInstance().newXMLGregorianCalendar((GregorianCalendar)this.now));
         messageSpecType.setMessageType(MessageTypeEnumType.CRS);
@@ -94,7 +94,7 @@ public class FinancialInstituteTransformer implements Transformer {
 
         OrganisationINType organisationIn = objectFactory.createOrganisationINType();
 
-        organisationIn.setINType(row.getCell(FinancialInstituteConstant.ID_NUMBER_TYPE).getStringCellValue());
+        //organisationIn.setINType(row.getCell(FinancialInstituteConstant.ID_NUMBER_TYPE).getStringCellValue());
         organisationIn.setIssuedBy(CountryCodeType.valueOf(row.getCell(FinancialInstituteConstant.ID_NUMBER_ISSUED_BY).getStringCellValue()));
         organisationIn.setINType("TIN");
         organisationIn.setValue(row.getCell(FinancialInstituteConstant.ID_NUMBER).getStringCellValue());

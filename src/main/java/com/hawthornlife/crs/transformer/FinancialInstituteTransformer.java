@@ -59,7 +59,7 @@ public class FinancialInstituteTransformer implements Transformer {
         MessageSpecType messageSpecType = objectFactory.createMessageSpecType();
         crsOecd.setMessageSpec(messageSpecType);
 
-        //messageSpecType.setSendingCompanyIN(row.getCell(FinancialInstituteConstant.SENDING_COMPANY_ID_NUMBER).getStringCellValue());
+        messageSpecType.setSendingCompanyIN(row.getCell(FinancialInstituteConstant.SENDING_COMPANY_ID_NUMBER).getStringCellValue());
         messageSpecType.setMessageRefId(getMessageRefId(row));
         messageSpecType.setTimestamp(DatatypeFactory.newInstance().newXMLGregorianCalendar((GregorianCalendar)this.now));
         messageSpecType.setMessageType(MessageTypeEnumType.CRS);
